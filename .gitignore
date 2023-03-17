@@ -141,3 +141,8 @@ src/build/
 build
 
 .idea
+
+/src/CmakeLists.txt.user
+/src/cmake-build-debug/
+build-src-arm_darwin_generic_mach_o_32bit-Debug/
+build-src-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
