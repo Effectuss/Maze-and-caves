@@ -3,6 +3,8 @@
 
 #include <QDebug>
 
+#include "facade_model.h"
+
 class Controller {
  public:
   Controller(Controller const&) = delete;
@@ -17,6 +19,7 @@ class Controller {
  private:
   Controller() = default;
   static Controller* controller_;
+  FacadeModel* facade_model_;
 };
 
 #endif  // MAZE_AND_CAVES_CONTROLLER_H_

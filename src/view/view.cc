@@ -10,7 +10,7 @@ View::View(QWidget *parent)
   ui_->setupUi(this);
   ui_->areaSettings->setCurrentWidget(ui_->settingsMaze);
   connect(ui_->actionUploadFile, SIGNAL(clicked()), this,
-          SLOT(ClickedUploadFile()));
+          SLOT(ClickedActionUploadFile()));
 }
 
 View::~View() {
@@ -19,9 +19,14 @@ View::~View() {
   delete ui_;
 }
 
-void View::ClickedUploadFile() {
+void View::ClickedActionUploadFile() {
   QString file_path = QFileDialog::getOpenFileName(
       this, "Open a file", QDir::homePath(), "txt (*.txt)");
   auto file_name = file_path.split(u'/');
   ui_->lineFileName->setText(file_name.back());
+}
+
+void View::ClickedActionClear()
+{
+
 }
