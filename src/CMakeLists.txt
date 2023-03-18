@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         model/maze_generator.h
         model/maze_solve.cc
         model/maze_solve.h
+        view/paint_window.cc
+        view/paint_window.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

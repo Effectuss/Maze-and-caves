@@ -5,4 +5,4 @@ class IController {};
 
 class Controller {};
 
-#endif  // _MAZE_AND_CAVES_CONTROLLER_H_3
+#endif  // _MAZE_AND_CAVES_CONTROLLER_H_
