@@ -2,5 +2,6 @@
 
 PaintWindow::PaintWindow(QWidget *parent) : QWidget(parent) {
   this->setAutoFillBackground(true);
-  this->setStyleSheet("background-color:grey;");
+  this->setStyleSheet("background-color:white;");
+  this->hide();
 }

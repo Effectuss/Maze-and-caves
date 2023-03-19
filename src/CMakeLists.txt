@@ -21,17 +21,16 @@ set(PROJECT_SOURCES
         view/view.ui
         controller/controller.cc
         controller/controller.h
-        model/cave_generator.cc
-        model/cave_generator.h
-        model/facade_model.cc
-        model/facade_model.h
+        model/cave_simulation.cc
+        model/cave_simulation.h
         model/maze_generator.cc
         model/maze_generator.h
         model/maze_solve.cc
         model/maze_solve.h
         view/paint_window.cc
         view/paint_window.h
-)
+        model/parsing_maze_file.h
+        model/parsing_maze_file.cc)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MazeAndCaves

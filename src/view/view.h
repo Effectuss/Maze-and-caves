@@ -3,8 +3,10 @@
 
 #include <QDebug>
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QWidget>
 #include <string>
+#include <vector>
 
 #include "controller.h"
 #include "paint_window.h"
@@ -19,8 +21,11 @@ class View : public QWidget {
   Q_OBJECT
 
  public:
-  View(QWidget *parent = nullptr);
-
+  explicit View(Controller *controller, QWidget *parent = nullptr);
+  View(const View &) = delete;
+  View(View &&) = delete;
+  void operator=(const View &) = delete;
+  void operator=(View &&) = delete;
   ~View();
 
  private slots:

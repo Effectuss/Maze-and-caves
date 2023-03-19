@@ -1,25 +1,24 @@
 #ifndef MAZE_AND_CAVES_CONTROLLER_H_
 #define MAZE_AND_CAVES_CONTROLLER_H_
 
-#include <QDebug>
+#include <iostream>
+#include <string>
 
-#include "facade_model.h"
+#include "parsing_maze_file.h"
 
 class Controller {
  public:
-  Controller(Controller const&) = delete;
+  Controller(ParsingMazeFile* parsingn_maze_file);
+  Controller(const Controller&) = delete;
   Controller(Controller&&) = delete;
-  Controller& operator=(Controller const&) = delete;
+  Controller& operator=(const Controller&) = delete;
   Controller& operator=(Controller&&) = delete;
 
-  static Controller* GetController();
-  static void Restart();
-  void qwe() { qDebug() << "ASD"; }
+  std::pair<std::vector<std::vector<int>>, std::vector<std::vector<int>>>&
+  ParsingFileMaze(const std::string& path_file);
 
  private:
-  Controller() = default;
-  static Controller* controller_;
-  FacadeModel* facade_model_;
+  ParsingMazeFile* parsing_maze_file_;
 };
 
 #endif  // MAZE_AND_CAVES_CONTROLLER_H_

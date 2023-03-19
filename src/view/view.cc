@@ -2,11 +2,11 @@
 
 #include "ui_view.h"
 
-View::View(QWidget *parent)
+View::View(Controller *controller, QWidget *parent)
     : QWidget(parent),
       ui_(new Ui::View),
       paint_window_(new PaintWindow),
-      controller_(Controller::GetController()) {
+      controller_(controller) {
   ui_->setupUi(this);
   ui_->areaSettings->setCurrentWidget(ui_->settingsMaze);
   connect(ui_->actionUploadFile, SIGNAL(clicked()), this,
@@ -14,7 +14,6 @@ View::View(QWidget *parent)
 }
 
 View::~View() {
-  Controller::Restart();
   delete paint_window_;
   delete ui_;
 }
@@ -24,9 +23,14 @@ void View::ClickedActionUploadFile() {
       this, "Open a file", QDir::homePath(), "txt (*.txt)");
   auto file_name = file_path.split(u'/');
   ui_->lineFileName->setText(file_name.back());
+  try {
+    if (1) {
+    }
+    std::pair<std::vector<std::vector<int>>, std::vector<std::vector<int>>>
+        maze_data = controller_->ParsingFileMaze(file_path.toStdString());
+  } catch (const std::exception &ex) {
+    QMessageBox::critical(this, "Warning", ex.what());
+  }
 }
 
-void View::ClickedActionClear()
-{
-
-}
+void View::ClickedActionClear() {}

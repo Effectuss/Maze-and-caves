@@ -1,16 +1,9 @@
 #include "controller.h"
 
-Controller* Controller::controller_ = nullptr;
+Controller::Controller(ParsingMazeFile* parsingn_maze_file)
+    : parsing_maze_file_(parsingn_maze_file) {}
 
-void Controller::Restart() {
-  if (controller_) {
-    delete controller_;
-  }
-}
-
-Controller* Controller::GetController() {
-  if (!controller_) {
-    controller_ = new Controller();
-  }
-  return controller_;
+std::pair<std::vector<std::vector<int>>, std::vector<std::vector<int>>>&
+Controller::ParsingFileMaze(const std::string& path_file) {
+  return this->parsing_maze_file_->ParsingFileMaze(path_file);
 }
