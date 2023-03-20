@@ -12,9 +12,20 @@ class ParsingMazeFile {
   std::pair<std::vector<std::vector<unsigned>>,
             std::vector<std::vector<unsigned>>>&
   ParsingFileMaze(const std::string& path_file);
+
   void TakeDataFromFile(std::ifstream& file);
-  bool IsCorrectFile(std::ifstream& file);
+
   void ResizeVectors(std::ifstream& file);
+
+  bool IsCorrectFile(std::ifstream& file);
+
+  bool IsCorrectFirstLineFile(std::stringstream& stream_line,
+                              unsigned& check_rows, unsigned& check_cols);
+
+  bool IsValidMatrix(std::stringstream& stream_line, const unsigned& check_cols,
+                     unsigned& index_rows);
+
+  void FillMatrix(std::ifstream& file);
 
  private:
   std::pair<std::vector<std::vector<unsigned>>,

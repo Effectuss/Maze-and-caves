@@ -7,42 +7,73 @@ ParsingMazeFile::ParsingFileMaze(const std::string& path_file) {
   if (!file.is_open()) {
     throw std::logic_error("Can't open file");
   } else {
-    if (this->IsCorrectFile(file)) {
-      file.seekg(0, file.beg);
-      this->TakeDataFromFile(file);
-    } else {
+    if (!this->IsCorrectFile(file)) {
       file.close();
       throw std::invalid_argument("The file content is invalid");
+    } else {
+      file.seekg(0, file.beg);
+      this->TakeDataFromFile(file);
     }
   }
   return this->maze_data_;
 }
 
-void ParsingMazeFile::TakeDataFromFile(std::ifstream& file) {
-  this->ResizeVectors(file);
-}
-
 bool ParsingMazeFile::IsCorrectFile(std::ifstream& file) {
   std::string buffer_line;
-  unsigned check_rows, check_cols;
-  unsigned count_line = 0;
+  unsigned index_rows_first = 0, index_rows_second = 0, count_line = 0,
+           check_rows, check_cols;
   while (std::getline(file, buffer_line)) {
     std::stringstream stream_line(buffer_line);
-    if (count_line == 0) {
-      stream_line >> check_rows >> check_cols;
-      stream_line.get();
-      if (stream_line) {
+    if (!count_line) {
+      if (!this->IsCorrectFirstLineFile(stream_line, check_rows, check_cols))
         return false;
-      } else if (check_rows > 50 || check_cols > 50) {
-        return false;
+    } else if (buffer_line == "") {
+    } else {
+      if (index_rows_first == check_rows - 1) {
+        if (!IsValidMatrix(stream_line, check_cols, index_rows_second))
+          return false;
+      } else if (index_rows_first != check_rows - 1) {
+        if (!IsValidMatrix(stream_line, check_cols, index_rows_first))
+          return false;
       }
     }
     ++count_line;
   }
-  if (count_line != (check_rows * 2) + 2) {
+  if (count_line != (check_rows * 2) + 2) return false;
+  return true;
+}
+
+bool ParsingMazeFile::IsCorrectFirstLineFile(std::stringstream& stream_line,
+                                             unsigned& check_rows,
+                                             unsigned& check_cols) {
+  stream_line >> check_rows >> check_cols;
+  stream_line.get();
+  if (stream_line) {
+    return false;
+  } else if (check_rows > 50 || check_cols > 50 || check_cols == 0 ||
+             check_rows == 0) {
     return false;
   }
   return true;
+}
+
+bool ParsingMazeFile::IsValidMatrix(std::stringstream& stream_line,
+                                    const unsigned& check_cols,
+                                    unsigned& index_rows) {
+  for (int i = 0; i < check_cols; ++i) {
+    unsigned tmp;
+    stream_line >> tmp;
+    if (tmp != 0 && tmp != 1) return false;
+  }
+  stream_line.get();
+  if (stream_line) return false;
+  ++index_rows;
+  return true;
+}
+
+void ParsingMazeFile::TakeDataFromFile(std::ifstream& file) {
+  this->ResizeVectors(file);
+  this->FillMatrix(file);
 }
 
 void ParsingMazeFile::ResizeVectors(std::ifstream& file) {
@@ -58,3 +89,5 @@ void ParsingMazeFile::ResizeVectors(std::ifstream& file) {
     vec.resize(tmp_cols);
   }
 }
+
+void ParsingMazeFile::FillMatrix(std::ifstream& file) {}
