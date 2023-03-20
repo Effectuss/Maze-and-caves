@@ -20,23 +20,14 @@ ParsingMazeFile::ParsingFileMaze(const std::string& path_file) {
 
 bool ParsingMazeFile::IsCorrectFile(std::ifstream& file) {
   std::string buffer_line;
-  unsigned index_rows_first = 0, index_rows_second = 0, count_line = 0,
-           check_rows, check_cols;
+  unsigned count_line = 0, check_rows, check_cols;
   while (std::getline(file, buffer_line)) {
     std::stringstream stream_line(buffer_line);
     if (!count_line) {
       if (!this->IsCorrectFirstLineFile(stream_line, check_rows, check_cols))
         return false;
-    } else if (buffer_line == "") {
-    } else {
-      if (index_rows_first == check_rows - 1) {
-        if (!IsValidMatrix(stream_line, check_cols, index_rows_second))
-          return false;
-      } else if (index_rows_first != check_rows - 1) {
-        if (!IsValidMatrix(stream_line, check_cols, index_rows_first))
-          return false;
-      }
-    }
+    } else if (buffer_line != "")
+      if (!IsValidMatrix(stream_line, check_cols)) return false;
     ++count_line;
   }
   if (count_line != (check_rows * 2) + 2) return false;
@@ -58,16 +49,15 @@ bool ParsingMazeFile::IsCorrectFirstLineFile(std::stringstream& stream_line,
 }
 
 bool ParsingMazeFile::IsValidMatrix(std::stringstream& stream_line,
-                                    const unsigned& check_cols,
-                                    unsigned& index_rows) {
+                                    const unsigned& check_cols) {
   for (int i = 0; i < check_cols; ++i) {
     unsigned tmp;
     stream_line >> tmp;
+    if (stream_line.fail()) return false;
     if (tmp != 0 && tmp != 1) return false;
   }
   stream_line.get();
   if (stream_line) return false;
-  ++index_rows;
   return true;
 }
 

@@ -22,8 +22,8 @@ class ParsingMazeFile {
   bool IsCorrectFirstLineFile(std::stringstream& stream_line,
                               unsigned& check_rows, unsigned& check_cols);
 
-  bool IsValidMatrix(std::stringstream& stream_line, const unsigned& check_cols,
-                     unsigned& index_rows);
+  bool IsValidMatrix(std::stringstream& stream_line,
+                     const unsigned& check_cols);
 
   void FillMatrix(std::ifstream& file);
 
