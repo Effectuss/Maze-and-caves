@@ -14,7 +14,8 @@ class Controller {
   Controller& operator=(const Controller&) = delete;
   Controller& operator=(Controller&&) = delete;
 
-  std::pair<std::vector<std::vector<int>>, std::vector<std::vector<int>>>&
+  std::pair<std::vector<std::vector<unsigned>>,
+            std::vector<std::vector<unsigned>>>&
   ParsingFileMaze(const std::string& path_file);
 
  private:

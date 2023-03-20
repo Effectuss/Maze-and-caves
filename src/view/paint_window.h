@@ -1,5 +1,6 @@
 #ifndef _MAZE_AND_CAVES_PAINT_WINDOW_H_
 #define _MAZE_AND_CAVES_PAINT_WINDOW_H_
+
 #include <QPainter>
 #include <QWidget>
 

@@ -3,17 +3,22 @@
 
 #include <exception>
 #include <fstream>
+#include <sstream>
 #include <utility>
 #include <vector>
 
 class ParsingMazeFile {
  public:
-  std::pair<std::vector<std::vector<int>>, std::vector<std::vector<int>>>&
+  std::pair<std::vector<std::vector<unsigned>>,
+            std::vector<std::vector<unsigned>>>&
   ParsingFileMaze(const std::string& path_file);
-  void FillDataFromFile(std::ifstream& file);
+  void TakeDataFromFile(std::ifstream& file);
+  bool IsCorrectFile(std::ifstream& file);
+  void ResizeVectors(std::ifstream& file);
 
  private:
-  std::pair<std::vector<std::vector<int>>, std::vector<std::vector<int>>>
+  std::pair<std::vector<std::vector<unsigned>>,
+            std::vector<std::vector<unsigned>>>
       maze_data_;
 };
 

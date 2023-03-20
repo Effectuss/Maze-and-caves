@@ -22,12 +22,14 @@ void View::ClickedActionUploadFile() {
   QString file_path = QFileDialog::getOpenFileName(
       this, "Open a file", QDir::homePath(), "txt (*.txt)");
   auto file_name = file_path.split(u'/');
-  ui_->lineFileName->setText(file_name.back());
   try {
-    if (1) {
+    if (ui_->areaSettings->currentIndex() == 0) {
+      std::pair<std::vector<std::vector<unsigned>>,
+                std::vector<std::vector<unsigned>>>
+          maze_data = controller_->ParsingFileMaze(file_path.toStdString());
+    } else if (ui_->areaSettings->currentIndex() == 1) {
     }
-    std::pair<std::vector<std::vector<int>>, std::vector<std::vector<int>>>
-        maze_data = controller_->ParsingFileMaze(file_path.toStdString());
+    ui_->lineFileName->setText(file_name.back());
   } catch (const std::exception &ex) {
     QMessageBox::critical(this, "Warning", ex.what());
   }
