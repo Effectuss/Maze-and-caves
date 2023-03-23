@@ -7,6 +7,10 @@
 class PaintWindow : public QWidget {
  public:
   PaintWindow(QWidget *parent = nullptr);
+  void DrawMaze() noexcept;
+
+ protected:
+  void paintEvent(QPaintEvent *event) override;
 };
 
 #endif  // _MAZE_AND_CAVES_PAINT_WINDOW_H_

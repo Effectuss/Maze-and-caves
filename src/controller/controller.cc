@@ -1,10 +1,19 @@
 #include "controller.h"
 
-Controller::Controller(ParsingMazeFile* parsingn_maze_file)
-    : parsing_maze_file_(parsingn_maze_file) {}
+Controller::Controller(Maze *maze) : maze_(maze) {}
 
-std::pair<std::vector<std::vector<unsigned>>,
-          std::vector<std::vector<unsigned>>>&
-Controller::ParsingFileMaze(const std::string& path_file) {
-  return this->parsing_maze_file_->ParsingFileMaze(path_file);
+void Controller::ParsingFileMaze(const std::string &path_file) {
+  this->maze_->ParsingMazeFile(path_file);
 }
+
+Controller::Matrix &Controller::GetRightBorderMaze() {
+  return this->maze_->GetRightBorderMatrix();
+}
+
+Controller::Matrix &Controller::GetLeftBorderMaze() {
+  return this->maze_->GetLeftBorderMatrix();
+}
+
+unsigned short &Controller::GetRowsMaze() { return this->GetRowsMaze(); }
+
+unsigned short &Controller::GetColsMaze() { return this->GetColsMaze(); }

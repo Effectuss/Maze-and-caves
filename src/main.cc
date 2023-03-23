@@ -4,8 +4,8 @@
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
-  ParsingMazeFile parsing_maze_file;
-  Controller controller(&parsing_maze_file);
+  Maze maze;
+  Controller controller(&maze);
   View main_window(&controller);
   main_window.show();
   return a.exec();

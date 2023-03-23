@@ -3,5 +3,8 @@
 PaintWindow::PaintWindow(QWidget *parent) : QWidget(parent) {
   this->setAutoFillBackground(true);
   this->setStyleSheet("background-color:white;");
-  this->hide();
 }
+
+void PaintWindow::DrawMaze() noexcept {}
+
+void PaintWindow::paintEvent(QPaintEvent *event) {}

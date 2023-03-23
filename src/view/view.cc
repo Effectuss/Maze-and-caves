@@ -24,10 +24,8 @@ void View::ClickedActionUploadFile() {
   auto file_name = file_path.split(u'/');
   try {
     if (ui_->areaSettings->currentIndex() == 0) {
-      std::pair<std::vector<std::vector<unsigned>>,
-                std::vector<std::vector<unsigned>>>
-          maze_data = controller_->ParsingFileMaze(file_path.toStdString());
-    } else if (ui_->areaSettings->currentIndex() == 1) {
+      controller_->ParsingFileMaze(file_path.toStdString());
+      paint_window_->DrawMaze();
     }
     ui_->lineFileName->setText(file_name.back());
   } catch (const std::exception &ex) {

@@ -29,8 +29,10 @@ set(PROJECT_SOURCES
         model/maze_solve.h
         view/paint_window.cc
         view/paint_window.h
-        model/parsing_maze_file.h
-        model/parsing_maze_file.cc)
+        model/parsing_file.h
+        model/parsing_file.cc
+        model/maze.cc
+        model/maze.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MazeAndCaves

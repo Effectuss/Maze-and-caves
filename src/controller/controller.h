@@ -4,22 +4,26 @@
 #include <iostream>
 #include <string>
 
-#include "parsing_maze_file.h"
+#include "maze.h"
 
 class Controller {
  public:
-  Controller(ParsingMazeFile* parsingn_maze_file);
+  using Matrix = std::vector<std::vector<unsigned short> >;
+
+  Controller(Maze* maze);
   Controller(const Controller&) = delete;
   Controller(Controller&&) = delete;
   Controller& operator=(const Controller&) = delete;
   Controller& operator=(Controller&&) = delete;
 
-  std::pair<std::vector<std::vector<unsigned>>,
-            std::vector<std::vector<unsigned>>>&
-  ParsingFileMaze(const std::string& path_file);
+  void ParsingFileMaze(const std::string& path_file);
+  Matrix& GetRightBorderMaze();
+  Matrix& GetLeftBorderMaze();
+  unsigned short& GetRowsMaze();
+  unsigned short& GetColsMaze();
 
  private:
-  ParsingMazeFile* parsing_maze_file_;
+  Maze* maze_;
 };
 
 #endif  // MAZE_AND_CAVES_CONTROLLER_H_
