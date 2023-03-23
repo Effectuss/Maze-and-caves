@@ -11,8 +11,7 @@ class Maze : public ParsingFile {
 
   Matrix& GetRightBorderMatrix();
   Matrix& GetLeftBorderMatrix();
-  void SetRows(const unsigned short&);
-  void SetCols(const unsigned short&);
+  void ResizeMaze(const unsigned short& rows, const unsigned short& cols);
   unsigned short& GetRows();
   unsigned short& GetCols();
 

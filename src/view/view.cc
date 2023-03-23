@@ -23,9 +23,11 @@ void View::ClickedActionUploadFile() {
       this, "Open a file", QDir::homePath(), "txt (*.txt)");
   auto file_name = file_path.split(u'/');
   try {
-    if (ui_->areaSettings->currentIndex() == 0) {
-      controller_->ParsingFileMaze(file_path.toStdString());
+    if (ui_->areaSettings->currentIndex() == kMazeTab) {
+      controller_->ParsingMazeFile(file_path.toStdString());
       paint_window_->DrawMaze();
+    } else if (ui_->areaSettings->currentIndex() == kCaveTab) {
+      controller_->ParsingCaveFile(file_path.toStdString());
     }
     ui_->lineFileName->setText(file_name.back());
   } catch (const std::exception &ex) {

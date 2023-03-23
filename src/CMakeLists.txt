@@ -32,7 +32,9 @@ set(PROJECT_SOURCES
         model/parsing_file.h
         model/parsing_file.cc
         model/maze.cc
-        model/maze.h)
+        model/maze.h
+        model/cave.h
+        model/cave.cc)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MazeAndCaves

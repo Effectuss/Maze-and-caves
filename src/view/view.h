@@ -21,6 +21,7 @@ class View : public QWidget {
   Q_OBJECT
 
  public:
+  enum CurrentTab { kMazeTab, kCaveTab };
   explicit View(Controller *controller, QWidget *parent = nullptr);
   View(const View &) = delete;
   View(View &&) = delete;

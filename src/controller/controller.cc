@@ -1,8 +1,8 @@
 #include "controller.h"
 
-Controller::Controller(Maze *maze) : maze_(maze) {}
+Controller::Controller(Maze *maze, Cave *cave) : maze_(maze), cave_(cave) {}
 
-void Controller::ParsingFileMaze(const std::string &path_file) {
+void Controller::ParsingMazeFile(const std::string &path_file) {
   this->maze_->ParsingMazeFile(path_file);
 }
 
@@ -17,3 +17,15 @@ Controller::Matrix &Controller::GetLeftBorderMaze() {
 unsigned short &Controller::GetRowsMaze() { return this->GetRowsMaze(); }
 
 unsigned short &Controller::GetColsMaze() { return this->GetColsMaze(); }
+
+void Controller::ParsingCaveFile(const std::string &path_file) {
+  this->cave_->ParsingCaveFile(path_file);
+}
+
+Controller::Matrix &Controller::GetDataCave() {
+  return this->cave_->GetCaveData();
+}
+
+unsigned short &Controller::GetRowsCave() { return this->cave_->GetRows(); }
+
+unsigned short &Controller::GetColsCave() { return this->cave_->GetCols(); }
