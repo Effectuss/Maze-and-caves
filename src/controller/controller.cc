@@ -14,9 +14,9 @@ Controller::Matrix &Controller::GetLeftBorderMaze() {
   return this->maze_->GetLeftBorderMatrix();
 }
 
-unsigned short &Controller::GetRowsMaze() { return this->GetRowsMaze(); }
+unsigned short &Controller::GetRowsMaze() { return this->maze_->GetRows(); }
 
-unsigned short &Controller::GetColsMaze() { return this->GetColsMaze(); }
+unsigned short &Controller::GetColsMaze() { return this->maze_->GetCols(); }
 
 void Controller::ParsingCaveFile(const std::string &path_file) {
   this->cave_->ParsingCaveFile(path_file);

@@ -3,20 +3,14 @@
 #include "ui_view.h"
 
 View::View(Controller *controller, QWidget *parent)
-    : QWidget(parent),
-      ui_(new Ui::View),
-      paint_window_(new PaintWindow),
-      controller_(controller) {
+    : QWidget(parent), ui_(new Ui::View), controller_(controller) {
   ui_->setupUi(this);
   ui_->areaSettings->setCurrentWidget(ui_->settingsMaze);
   connect(ui_->actionUploadFile, SIGNAL(clicked()), this,
           SLOT(ClickedActionUploadFile()));
 }
 
-View::~View() {
-  delete paint_window_;
-  delete ui_;
-}
+View::~View() { delete ui_; }
 
 void View::ClickedActionUploadFile() {
   QString file_path = QFileDialog::getOpenFileName(
@@ -25,7 +19,9 @@ void View::ClickedActionUploadFile() {
   try {
     if (ui_->areaSettings->currentIndex() == kMazeTab) {
       controller_->ParsingMazeFile(file_path.toStdString());
-      paint_window_->DrawMaze();
+      ui_->valueHeight->setValue(controller_->GetRowsMaze());
+      ui_->valueWidth->setValue(controller_->GetColsMaze());
+      ui_->paintWindow->DrawMaze();
     } else if (ui_->areaSettings->currentIndex() == kCaveTab) {
       controller_->ParsingCaveFile(file_path.toStdString());
     }

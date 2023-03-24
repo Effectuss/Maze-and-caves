@@ -1,6 +1,7 @@
 #ifndef MAZE_AND_CAVES_MAZE_H_
 #define MAZE_AND_CAVES_MAZE_H_
 
+#include "maze_generator.h"
 #include "parsing_file.h"
 
 class Maze : public ParsingFile {
@@ -18,6 +19,7 @@ class Maze : public ParsingFile {
  private:
   unsigned short rows_, cols_;
   Matrix right_border_, bottom_border_;
+  MazeGenerator maze_generation_;
 };
 
 #endif  // MAZE_AND_CAVES_MAZE_H_

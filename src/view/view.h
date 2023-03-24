@@ -35,7 +35,6 @@ class View : public QWidget {
 
  private:
   Ui::View *ui_;
-  PaintWindow *paint_window_;
   Controller *controller_;
 };
 
