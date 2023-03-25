@@ -32,6 +32,7 @@ class View : public QWidget {
  private slots:
   void ClickedActionUploadFile();
   void ClickedActionClear();
+  void ClickedActionGenerate();
 
  private:
   Ui::View *ui_;

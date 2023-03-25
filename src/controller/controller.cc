@@ -3,23 +3,33 @@
 Controller::Controller(Maze *maze, Cave *cave) : maze_(maze), cave_(cave) {}
 
 void Controller::ParsingMazeFile(const std::string &path_file) {
-  this->maze_->ParsingMazeFile(path_file);
+  this->maze_->StartParsingFile(path_file);
 }
 
 Controller::Matrix &Controller::GetRightBorderMaze() {
   return this->maze_->GetRightBorderMatrix();
 }
 
-Controller::Matrix &Controller::GetLeftBorderMaze() {
-  return this->maze_->GetLeftBorderMatrix();
+Controller::Matrix &Controller::GetBottomBorderMaze() {
+  return this->maze_->GetBottomBorderMatrix();
 }
 
 unsigned short &Controller::GetRowsMaze() { return this->maze_->GetRows(); }
 
 unsigned short &Controller::GetColsMaze() { return this->maze_->GetCols(); }
 
+bool Controller::CheckRightBorderMaze(const unsigned short &i,
+                                      const unsigned short &j) {
+  return this->maze_->CheckRightBorder(i, j);
+}
+
+bool Controller::CheckBottomBorderMaze(const unsigned short &i,
+                                       const unsigned short &j) {
+  return this->maze_->CheckBottomBorder(i, j);
+}
+
 void Controller::ParsingCaveFile(const std::string &path_file) {
-  this->cave_->ParsingCaveFile(path_file);
+  this->cave_->StartParsingFile(path_file);
 }
 
 Controller::Matrix &Controller::GetDataCave() {

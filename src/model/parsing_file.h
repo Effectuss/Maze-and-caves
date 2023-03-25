@@ -18,6 +18,7 @@ class ParsingFile {
   enum TypeOfParsing { kMaze = 1, kCave = 2 };
 
   virtual ~ParsingFile() = 0;
+  virtual void StartParsingFile(const std::string& path_file) = 0;
 
  protected:
   static void FillMatrix(std::ifstream& file, Matrix& vec);

@@ -7,7 +7,7 @@ class Cave : public ParsingFile {
  public:
   using Matrix = std::vector<std::vector<unsigned short>>;
 
-  void ParsingCaveFile(const std::string& path_file);
+  void StartParsingFile(const std::string& path_file) override;
 
   Matrix& GetCaveData();
   void ResizeCave(const unsigned short& rows, const unsigned short& cols);

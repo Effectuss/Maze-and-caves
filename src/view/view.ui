@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>944</width>
-    <height>600</height>
+    <width>977</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>880</width>
-    <height>600</height>
+    <width>944</width>
+    <height>609</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>12313</width>
+    <width>123132</width>
     <height>123123</height>
    </size>
   </property>
@@ -36,34 +36,26 @@
     <rect>
      <x>12</x>
      <y>12</y>
-     <width>941</width>
-     <height>593</height>
+     <width>945</width>
+     <height>583</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="1">
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0" colspan="2">
-       <widget class="QPushButton" name="actionClear">
-        <property name="text">
-         <string>Clear</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QPushButton" name="actionUploadFile">
-        <property name="minimumSize">
-         <size>
-          <width>82</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Upload file</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+    <item row="0" column="0">
+     <widget class="PaintWindow" name="paintWindow" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>500</width>
+        <height>500</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>500</width>
+        <height>500</height>
+       </size>
+      </property>
+     </widget>
     </item>
     <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -161,6 +153,30 @@
       </item>
      </layout>
     </item>
+    <item row="1" column="1">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0" colspan="2">
+       <widget class="QPushButton" name="actionClear">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QPushButton" name="actionUploadFile">
+        <property name="minimumSize">
+         <size>
+          <width>82</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Upload file</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="1">
      <widget class="QTabWidget" name="areaSettings">
       <property name="sizePolicy">
@@ -188,72 +204,75 @@
        <attribute name="title">
         <string>Maze</string>
        </attribute>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="actionSave">
         <property name="geometry">
          <rect>
-          <x>59</x>
-          <y>420</y>
+          <x>60</x>
+          <y>410</y>
           <width>201</width>
           <height>32</height>
          </rect>
         </property>
         <property name="text">
-         <string>Generate</string>
+         <string>Save</string>
         </property>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>360</y>
-          <width>171</width>
-          <height>31</height>
+          <x>60</x>
+          <y>140</y>
+          <width>201</width>
+          <height>211</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="labelWidth">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="labelHeight">
+             <property name="text">
+              <string>Height</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="valueHeight">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>50</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="labelWidth">
+             <property name="text">
+              <string>Width</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="valueWidth">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>50</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="actionGenerate">
            <property name="text">
-            <string>Width</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="valueWidth">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>50</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>310</y>
-          <width>171</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QLabel" name="labelHeight">
-           <property name="text">
-            <string>Height</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="valueHeight">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>50</number>
+            <string>Generate</string>
            </property>
           </widget>
          </item>
@@ -265,22 +284,6 @@
         <string>Cave</string>
        </attribute>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="PaintWindow" name="paintWindow" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>500</width>
-        <height>500</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>500</width>
-        <height>500</height>
-       </size>
-      </property>
      </widget>
     </item>
    </layout>
@@ -295,5 +298,22 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>areaSettings</sender>
+   <signal>tabBarClicked(int)</signal>
+   <receiver>actionClear</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>752</x>
+     <y>264</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>752</x>
+     <y>583</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -3,6 +3,10 @@
 
 class MazeGenerator {
  public:
+  virtual ~MazeGenerator() = 0;
+  static void GenerateMaze();
+
+ protected:
  private:
 };
 

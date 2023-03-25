@@ -1,6 +1,6 @@
 #include "cave.h"
 
-void Cave::ParsingCaveFile(const std::string &path_file) {
+void Cave::StartParsingFile(const std::string &path_file) {
   std::ifstream file(path_file);
   if (!file.is_open()) {
     throw std::logic_error("Can't open file");

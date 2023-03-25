@@ -8,6 +8,10 @@ View::View(Controller *controller, QWidget *parent)
   ui_->areaSettings->setCurrentWidget(ui_->settingsMaze);
   connect(ui_->actionUploadFile, SIGNAL(clicked()), this,
           SLOT(ClickedActionUploadFile()));
+  connect(ui_->actionClear, SIGNAL(clicked()), this,
+          SLOT(ClickedActionClear()));
+  connect(ui_->actionGenerate, SIGNAL(clicked()), this,
+          SLOT(ClickedActionGenerate()));
 }
 
 View::~View() { delete ui_; }
@@ -19,11 +23,12 @@ void View::ClickedActionUploadFile() {
   try {
     if (ui_->areaSettings->currentIndex() == kMazeTab) {
       controller_->ParsingMazeFile(file_path.toStdString());
+      ui_->paintWindow->DrawMaze(this->controller_);
       ui_->valueHeight->setValue(controller_->GetRowsMaze());
       ui_->valueWidth->setValue(controller_->GetColsMaze());
-      ui_->paintWindow->DrawMaze();
     } else if (ui_->areaSettings->currentIndex() == kCaveTab) {
-      controller_->ParsingCaveFile(file_path.toStdString());
+      this->controller_->ParsingCaveFile(file_path.toStdString());
+      ui_->paintWindow->DrawCave(this->controller_);
     }
     ui_->lineFileName->setText(file_name.back());
   } catch (const std::exception &ex) {
@@ -31,4 +36,11 @@ void View::ClickedActionUploadFile() {
   }
 }
 
-void View::ClickedActionClear() {}
+void View::ClickedActionClear() {
+  ui_->paintWindow->ClearPaintWindow();
+  ui_->lineFileName->clear();
+  ui_->labelHeight->clear();
+  ui_->labelWidth->clear();
+}
+
+void View::ClickedActionGenerate() {}
