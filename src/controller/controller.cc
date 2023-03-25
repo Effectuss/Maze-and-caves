@@ -39,3 +39,8 @@ Controller::Matrix &Controller::GetDataCave() {
 unsigned short &Controller::GetRowsCave() { return this->cave_->GetRows(); }
 
 unsigned short &Controller::GetColsCave() { return this->cave_->GetCols(); }
+
+bool Controller::CheckCellCave(const unsigned short &i,
+                               const unsigned short &j) {
+  return this->cave_->CheckCell(i, j);
+}

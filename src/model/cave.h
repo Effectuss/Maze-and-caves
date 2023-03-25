@@ -13,6 +13,7 @@ class Cave : public ParsingFile {
   void ResizeCave(const unsigned short& rows, const unsigned short& cols);
   unsigned short& GetRows();
   unsigned short& GetCols();
+  bool CheckCell(const unsigned short& i, const unsigned short& j);
 
  private:
   unsigned short rows_, cols_;

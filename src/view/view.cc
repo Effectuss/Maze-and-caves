@@ -6,6 +6,8 @@ View::View(Controller *controller, QWidget *parent)
     : QWidget(parent), ui_(new Ui::View), controller_(controller) {
   ui_->setupUi(this);
   ui_->areaSettings->setCurrentWidget(ui_->settingsMaze);
+  ui_->valueHeight->clear();
+  ui_->valueWidth->clear();
   connect(ui_->actionUploadFile, SIGNAL(clicked()), this,
           SLOT(ClickedActionUploadFile()));
   connect(ui_->actionClear, SIGNAL(clicked()), this,
@@ -27,7 +29,7 @@ void View::ClickedActionUploadFile() {
       ui_->valueHeight->setValue(controller_->GetRowsMaze());
       ui_->valueWidth->setValue(controller_->GetColsMaze());
     } else if (ui_->areaSettings->currentIndex() == kCaveTab) {
-      this->controller_->ParsingCaveFile(file_path.toStdString());
+      controller_->ParsingCaveFile(file_path.toStdString());
       ui_->paintWindow->DrawCave(this->controller_);
     }
     ui_->lineFileName->setText(file_name.back());
@@ -39,8 +41,8 @@ void View::ClickedActionUploadFile() {
 void View::ClickedActionClear() {
   ui_->paintWindow->ClearPaintWindow();
   ui_->lineFileName->clear();
-  ui_->labelHeight->clear();
-  ui_->labelWidth->clear();
+  ui_->valueHeight->clear();
+  ui_->valueWidth->clear();
 }
 
 void View::ClickedActionGenerate() {}

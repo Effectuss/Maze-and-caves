@@ -16,7 +16,7 @@ class PaintWindow : public QWidget {
   void operator=(PaintWindow &&) = delete;
 
   void DrawMaze(Controller *controller);
-  void DrawFrame(QPainter &painer);
+  void DrawMazeFrame(QPainter &painer);
   void ClearPaintWindow();
   void DrawCave(Controller *controller);
 

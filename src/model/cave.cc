@@ -29,3 +29,10 @@ Cave::Matrix &Cave::GetCaveData() { return this->cave_data_; }
 unsigned short &Cave::GetRows() { return this->rows_; }
 
 unsigned short &Cave::GetCols() { return this->cols_; }
+
+bool Cave::CheckCell(const unsigned short &i, const unsigned short &j) {
+  if (i > this->rows_ || j > this->cols_) {
+    throw std::invalid_argument("Incorrect index");
+  }
+  return this->cave_data_.at(i).at(j);
+}

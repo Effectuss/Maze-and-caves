@@ -1,7 +1,9 @@
 #include "paint_window.h"
 
 PaintWindow::PaintWindow(QWidget *parent)
-    : QWidget(parent), image_(QImage(500, 500, QImage::Format_RGB16)) {}
+    : QWidget(parent), image_(QImage(500, 500, QImage::Format_RGB16)) {
+  image_.fill(Qt::white);
+}
 
 void PaintWindow::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
@@ -12,8 +14,8 @@ void PaintWindow::paintEvent(QPaintEvent *event) {
 void PaintWindow::DrawMaze(Controller *controller) {
   this->ClearPaintWindow();
   QPainter painter(&image_);
-  painter.setPen(QPen(Qt::white, 2));
-  this->DrawFrame(painter);
+  painter.setPen(QPen(Qt::black, 2));
+  this->DrawMazeFrame(painter);
   int width = 500.0 / controller->GetColsMaze();
   int height = 500.0 / controller->GetRowsMaze();
   for (int i = 0; i < controller->GetRowsMaze(); i++) {
@@ -33,7 +35,7 @@ void PaintWindow::DrawMaze(Controller *controller) {
   update();
 }
 
-void PaintWindow::DrawFrame(QPainter &painter) {
+void PaintWindow::DrawMazeFrame(QPainter &painter) {
   painter.drawLine(0, 0, 500, 0);
   painter.drawLine(0, 500, 0, 0);
   painter.drawLine(500, 0, 500, 500);
@@ -41,11 +43,24 @@ void PaintWindow::DrawFrame(QPainter &painter) {
 }
 
 void PaintWindow::ClearPaintWindow() {
-  image_.fill(Qt::black);
+  image_.fill(Qt::white);
   update();
 }
 
 void PaintWindow::DrawCave(Controller *controller) {
+  this->ClearPaintWindow();
   QPainter painter(&image_);
-  image_.fill(Qt::white);
+  int width_cell = 500.0 / controller->GetColsCave();
+  int height_cell = 500.0 / controller->GetRowsCave();
+  for (int i = 0; i < controller->GetRowsCave(); i++) {
+    for (int j = 0; j < controller->GetColsCave(); j++) {
+      int x0 = width_cell * j;
+      int y0 = height_cell * i;
+
+      if (controller->CheckCellCave(i, j)) {
+        painter.fillRect(x0, y0, width_cell, height_cell, Qt::black);
+      }
+    }
+  }
+  update();
 }

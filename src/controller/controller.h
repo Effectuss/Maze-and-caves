@@ -29,6 +29,7 @@ class Controller {
   Matrix& GetDataCave();
   unsigned short& GetRowsCave();
   unsigned short& GetColsCave();
+  bool CheckCellCave(const unsigned short& i, const unsigned short& j);
 
  private:
   Maze* maze_;

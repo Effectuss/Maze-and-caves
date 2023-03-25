@@ -10,6 +10,7 @@ class Maze : public ParsingFile, public MazeGenerator {
 
   void ParsingMazeFile(const std::string& path_file);
   void StartParsingFile(const std::string& path_file) override;
+  void GenerationMaze();
 
   Matrix& GetRightBorderMatrix();
   Matrix& GetBottomBorderMatrix();

@@ -20,6 +20,11 @@ void Maze::StartParsingFile(const std::string &path_file) {
   }
 }
 
+void Maze::GenerationMaze()
+{
+
+}
+
 Maze::Matrix &Maze::GetRightBorderMatrix() { return this->right_border_; }
 
 Maze::Matrix &Maze::GetBottomBorderMatrix() { return this->bottom_border_; }
