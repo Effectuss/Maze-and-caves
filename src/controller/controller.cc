@@ -28,6 +28,11 @@ bool Controller::CheckBottomBorderMaze(const unsigned short &i,
   return this->maze_->CheckBottomBorder(i, j);
 }
 
+void Controller::GenerationMaze(const unsigned short &i,
+                                const unsigned short &j) {
+  this->maze_->GenerationMaze(i, j);
+}
+
 void Controller::ParsingCaveFile(const std::string &path_file) {
   this->cave_->StartParsingFile(path_file);
 }

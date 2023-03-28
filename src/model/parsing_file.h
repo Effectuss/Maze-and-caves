@@ -21,16 +21,13 @@ class ParsingFile {
   virtual void StartParsingFile(const std::string& path_file) = 0;
 
  protected:
-  static void FillMatrix(std::ifstream& file, Matrix& vec);
-  static void ParsingColsAndRows(std::ifstream& file, reference rows,
-                                 reference cols);
+  void FillMatrix(std::ifstream& file, Matrix& vec);
+  void ParsingColsAndRows(std::ifstream& file, reference rows, reference cols);
 
-  static bool IsCorrectFile(std::ifstream& file, TypeOfParsing);
-  static bool IsCorrectFirstLineFile(std::stringstream& stream_line,
-                                     reference check_rows,
-                                     reference check_cols);
-  static bool IsValidMatrix(std::stringstream& stream_line,
-                            const_reference check_cols);
+  bool IsCorrectFile(std::ifstream& file, TypeOfParsing);
+  bool IsCorrectFirstLineFile(std::stringstream& stream_line, reference rows,
+                              reference cols);
+  bool IsValidMatrix(std::stringstream& stream_line, const_reference cols);
 };
 
 #endif  // MAZE_AND_CAVES_PARSING_MAZE_FILE_H_

@@ -45,4 +45,7 @@ void View::ClickedActionClear() {
   ui_->valueWidth->clear();
 }
 
-void View::ClickedActionGenerate() {}
+void View::ClickedActionGenerate() {
+  controller_->GenerationMaze(ui_->valueHeight->value(),
+                              ui_->valueWidth->value());
+}

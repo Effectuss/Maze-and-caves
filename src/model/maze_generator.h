@@ -1,13 +1,16 @@
 #ifndef MAZE_AND_CAVES_MAZE_GENERATOR_H_
 #define MAZE_AND_CAVES_MAZE_GENERATOR_H_
 
+#include <vector>
+
+class Maze;
+
 class MazeGenerator {
  public:
-  virtual ~MazeGenerator() = 0;
-  static void GenerateMaze();
+  void CreateCurrentLine(const unsigned short& cols);
 
- protected:
  private:
+  std::vector<unsigned int> current_line_;
 };
 
 #endif  // MAZE_AND_CAVES_MAZE_GENERATOR_H_

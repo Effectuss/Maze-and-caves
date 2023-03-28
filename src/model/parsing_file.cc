@@ -5,42 +5,39 @@ ParsingFile::~ParsingFile() {}
 bool ParsingFile::IsCorrectFile(std::ifstream& file,
                                 TypeOfParsing type_parsing) {
   std::string buffer_line;
-  value_type count_line = 0, check_rows = 0, check_cols = 0;
+  value_type amount_lines = 0, rows = 0, cols = 0;
   while (std::getline(file, buffer_line)) {
     std::stringstream stream_line(buffer_line);
-    if (!count_line) {
-      if (!IsCorrectFirstLineFile(stream_line, check_rows, check_cols))
-        return false;
+    if (!amount_lines) {
+      if (!IsCorrectFirstLineFile(stream_line, rows, cols)) return false;
     } else if (buffer_line != "") {
-      if (!IsValidMatrix(stream_line, check_cols)) return false;
+      if (!IsValidMatrix(stream_line, cols)) return false;
     }
-    ++count_line;
+    ++amount_lines;
   }
   if (type_parsing == TypeOfParsing::kMaze) {
-    if (count_line != (check_rows * 2 + 2)) return false;
+    if (amount_lines != (rows * 2 + 2)) return false;
   } else if (type_parsing == TypeOfParsing::kCave) {
-    if (count_line != (check_rows + 1)) return false;
+    if (amount_lines != (rows + 1)) return false;
   }
   return true;
 }
 
 bool ParsingFile::IsCorrectFirstLineFile(std::stringstream& stream_line,
-                                         reference check_rows,
-                                         reference check_cols) {
-  stream_line >> check_rows >> check_cols;
+                                         reference rows, reference cols) {
+  stream_line >> rows >> cols;
   stream_line.get();
   if (stream_line) {
     return false;
-  } else if (check_rows > 50 || check_cols > 50 || check_cols == 0 ||
-             check_rows == 0) {
+  } else if (rows > 50 || cols > 50 || cols == 0 || rows == 0) {
     return false;
   }
   return true;
 }
 
 bool ParsingFile::IsValidMatrix(std::stringstream& stream_line,
-                                const_reference check_cols) {
-  for (int i = 0; i < check_cols; ++i) {
+                                const_reference cols) {
+  for (int i = 0; i < cols; ++i) {
     unsigned tmp;
     stream_line >> tmp;
     if (stream_line.fail()) return false;

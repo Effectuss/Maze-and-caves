@@ -24,6 +24,7 @@ class Controller {
   unsigned short& GetColsMaze();
   bool CheckRightBorderMaze(const unsigned short& i, const unsigned short& j);
   bool CheckBottomBorderMaze(const unsigned short& i, const unsigned short& j);
+  void GenerationMaze(const unsigned short& i, const unsigned short& j);
 
   void ParsingCaveFile(const std::string& path_file);
   Matrix& GetDataCave();

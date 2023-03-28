@@ -16,10 +16,10 @@ void PaintWindow::DrawMaze(Controller *controller) {
   QPainter painter(&image_);
   painter.setPen(QPen(Qt::black, 2));
   this->DrawMazeFrame(painter);
-  int width = 500.0 / controller->GetColsMaze();
   int height = 500.0 / controller->GetRowsMaze();
-  for (int i = 0; i < controller->GetRowsMaze(); i++) {
-    for (int j = 0; j < controller->GetColsMaze(); j++) {
+  int width = 500.0 / controller->GetColsMaze();
+  for (int i = 0; i < controller->GetRowsMaze(); ++i) {
+    for (int j = 0; j < controller->GetColsMaze(); ++j) {
       int x_0 = width * j;
       int y_0 = height * i;
       int x_1 = width * (j + 1);
@@ -36,10 +36,10 @@ void PaintWindow::DrawMaze(Controller *controller) {
 }
 
 void PaintWindow::DrawMazeFrame(QPainter &painter) {
-  painter.drawLine(0, 0, 500, 0);
-  painter.drawLine(0, 500, 0, 0);
-  painter.drawLine(500, 0, 500, 500);
-  painter.drawLine(0, 500, 500, 500);
+  painter.drawLine(0, 0, this->width(), 0);
+  painter.drawLine(0, this->height(), 0, 0);
+  painter.drawLine(this->width(), 0, this->width(), this->height());
+  painter.drawLine(0, this->height(), this->width(), this->height());
 }
 
 void PaintWindow::ClearPaintWindow() {
@@ -52,8 +52,8 @@ void PaintWindow::DrawCave(Controller *controller) {
   QPainter painter(&image_);
   int width_cell = 500.0 / controller->GetColsCave();
   int height_cell = 500.0 / controller->GetRowsCave();
-  for (int i = 0; i < controller->GetRowsCave(); i++) {
-    for (int j = 0; j < controller->GetColsCave(); j++) {
+  for (int i = 0; i < controller->GetRowsCave(); ++i) {
+    for (int j = 0; j < controller->GetColsCave(); ++j) {
       int x0 = width_cell * j;
       int y0 = height_cell * i;
 
