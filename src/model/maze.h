@@ -4,7 +4,7 @@
 #include "maze_generator.h"
 #include "parsing_file.h"
 
-class Maze : public ParsingFile, public MazeGenerator {
+class Maze : public ParsingFile {
  public:
   using Matrix = std::vector<std::vector<unsigned short>>;
 
@@ -17,8 +17,10 @@ class Maze : public ParsingFile, public MazeGenerator {
   void CreateMaze(const unsigned short& rows, const unsigned short& cols);
   unsigned short& GetRows();
   unsigned short& GetCols();
-  bool CheckRightBorder(const unsigned short& i, const unsigned short& j);
-  bool CheckBottomBorder(const unsigned short& i, const unsigned short& j);
+  unsigned short CheckRightBorder(const unsigned short& i,
+                                  const unsigned short& j);
+  unsigned short CheckBottomBorder(const unsigned short& i,
+                                   const unsigned short& j);
 
  private:
   unsigned short rows_, cols_;

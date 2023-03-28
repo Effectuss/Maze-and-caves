@@ -19,7 +19,7 @@ void Cave::StartParsingFile(const std::string &path_file) {
   }
 }
 
-void Cave::ResizeCave(const unsigned short &rows, const unsigned short &cols) {
+void Cave::CreateCave(const unsigned short &rows, const unsigned short &cols) {
   this->cave_data_ = std::move(Matrix(rows, std::vector<unsigned short>(cols)));
   this->rows_ = rows;
   this->cols_ = cols;

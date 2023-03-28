@@ -48,4 +48,5 @@ void View::ClickedActionClear() {
 void View::ClickedActionGenerate() {
   controller_->GenerationMaze(ui_->valueHeight->value(),
                               ui_->valueWidth->value());
+  ui_->paintWindow->DrawMaze(this->controller_);
 }

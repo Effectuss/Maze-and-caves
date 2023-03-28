@@ -23,7 +23,7 @@ void Maze::StartParsingFile(const std::string &path_file) {
 void Maze::GenerationMaze(const unsigned short &rows,
                           const unsigned short &cols) {
   this->CreateMaze(rows, cols);
-  this->generator_.CreateCurrentLine(cols);
+  this->generator_.GenerationMaze(this);
 }
 
 Maze::Matrix &Maze::GetRightBorderMatrix() { return this->right_border_; }
@@ -34,14 +34,16 @@ unsigned short &Maze::GetRows() { return this->rows_; }
 
 unsigned short &Maze::GetCols() { return this->cols_; }
 
-bool Maze::CheckRightBorder(const unsigned short &i, const unsigned short &j) {
+unsigned short Maze::CheckRightBorder(const unsigned short &i,
+                                      const unsigned short &j) {
   if (i >= this->rows_ || j >= this->cols_) {
     throw std::invalid_argument("Incorrect index");
   }
   return this->right_border_.at(i).at(j);
 }
 
-bool Maze::CheckBottomBorder(const unsigned short &i, const unsigned short &j) {
+unsigned short Maze::CheckBottomBorder(const unsigned short &i,
+                                       const unsigned short &j) {
   if (i > this->rows_ || j > this->cols_) {
     throw std::invalid_argument("Incorrect index");
   }
@@ -49,10 +51,8 @@ bool Maze::CheckBottomBorder(const unsigned short &i, const unsigned short &j) {
 }
 
 void Maze::CreateMaze(const unsigned short &rows, const unsigned short &cols) {
-  this->right_border_ =
-      std::move(Matrix(rows, std::vector<unsigned short>(cols)));
-  this->bottom_border_ =
-      std::move(Matrix(rows, std::vector<unsigned short>(cols)));
+  this->right_border_ = Matrix(rows, std::vector<unsigned short>(cols));
+  this->bottom_border_ = Matrix(rows, std::vector<unsigned short>(cols));
   this->rows_ = rows;
   this->cols_ = cols;
 }

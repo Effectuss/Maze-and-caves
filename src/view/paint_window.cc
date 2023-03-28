@@ -1,8 +1,9 @@
 #include "paint_window.h"
 
 PaintWindow::PaintWindow(QWidget *parent)
-    : QWidget(parent), image_(QImage(500, 500, QImage::Format_RGB16)) {
+    : QWidget(parent), image_(QImage(500, 500, QImage::Format_RGB32)) {
   image_.fill(Qt::white);
+  this->ClearPaintWindow();
 }
 
 void PaintWindow::paintEvent(QPaintEvent *event) {
@@ -16,8 +17,8 @@ void PaintWindow::DrawMaze(Controller *controller) {
   QPainter painter(&image_);
   painter.setPen(QPen(Qt::black, 2));
   this->DrawMazeFrame(painter);
-  int height = 500.0 / controller->GetRowsMaze();
-  int width = 500.0 / controller->GetColsMaze();
+  double height = 500.0 / controller->GetRowsMaze();
+  double width = 500.0 / controller->GetColsMaze();
   for (int i = 0; i < controller->GetRowsMaze(); ++i) {
     for (int j = 0; j < controller->GetColsMaze(); ++j) {
       int x_0 = width * j;

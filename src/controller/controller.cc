@@ -18,13 +18,13 @@ unsigned short &Controller::GetRowsMaze() { return this->maze_->GetRows(); }
 
 unsigned short &Controller::GetColsMaze() { return this->maze_->GetCols(); }
 
-bool Controller::CheckRightBorderMaze(const unsigned short &i,
-                                      const unsigned short &j) {
+unsigned short Controller::CheckRightBorderMaze(const unsigned short &i,
+                                                const unsigned short &j) {
   return this->maze_->CheckRightBorder(i, j);
 }
 
-bool Controller::CheckBottomBorderMaze(const unsigned short &i,
-                                       const unsigned short &j) {
+unsigned short Controller::CheckBottomBorderMaze(const unsigned short &i,
+                                                 const unsigned short &j) {
   return this->maze_->CheckBottomBorder(i, j);
 }
 
