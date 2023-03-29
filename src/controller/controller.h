@@ -28,10 +28,10 @@ class Controller {
   const data_type& CheckBottomBorderMaze(const data_type& i,
                                          const data_type& j);
   void GenerationMaze(const data_type& i, const data_type& j);
-  void SaveMazeInFile(const std::string& file_name);
+  void SaveMazeInFile(const std::string& file_path);
 
   // cave methods
-  void ParsingCaveFile(const std::string& path_file);
+  void ParsingCaveFile(const std::string& file_path);
   Matrix& GetDataCave();
   const data_type& GetRowsCave();
   const data_type& GetColsCave();

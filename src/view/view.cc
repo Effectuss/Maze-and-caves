@@ -55,7 +55,12 @@ void View::ClickedOnActionGenerate() {
 }
 
 void View::ClickedOnActionSaveMaze() {
-  QString file_name = QFileDialog::getSaveFileName(
+  QString file_path = QFileDialog::getSaveFileName(
       this, "Save maze", QDir::homePath(), "txt (*.txt)");
-  qDebug() << file_name;
+  try {
+    controller_->SaveMazeInFile(file_path.toStdString());
+    ui_->lineFileName->setText(file_path.split(u'/').back());
+  } catch (const std::exception &ex) {
+    QMessageBox::critical(this, "Warning", ex.what());
+  }
 }

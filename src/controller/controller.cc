@@ -36,12 +36,12 @@ void Controller::GenerationMaze(const data_type &i, const data_type &j) {
   this->maze_->GenerationMaze(i, j);
 }
 
-void Controller::SaveMazeInFile(const std::string &file_name) {
-  this->maze_->SaveMazeInFile(file_name);
+void Controller::SaveMazeInFile(const std::string &file_path) {
+  this->maze_->SaveMazeInFile(file_path);
 }
 
-void Controller::ParsingCaveFile(const std::string &path_file) {
-  this->cave_->StartParsingFile(path_file);
+void Controller::ParsingCaveFile(const std::string &file_path) {
+  this->cave_->StartParsingFile(file_path);
 }
 
 Controller::Matrix &Controller::GetDataCave() {
