@@ -34,7 +34,7 @@ void MazeGenerator::AssignUniqueValues() {
 void MazeGenerator::AddingVerticalWalls(const data_type& row) {
   for (int i = 0; i < maze_->GetCols() - 1; ++i) {
     bool choice = RandomBool();
-    if (choice == true || current_line_.at(i) == current_line_.at(i + 1)) {
+    if ((choice == true) || (current_line_.at(i) == current_line_.at(i + 1))) {
       maze_->GetRightBorderMatrix().at(row).at(i) = true;
     } else {
       MergeSet(i, current_line_.at(i));
@@ -44,8 +44,10 @@ void MazeGenerator::AddingVerticalWalls(const data_type& row) {
 }
 
 void MazeGenerator::MergeSet(const data_type& index, const data_type& element) {
+  int mutable_set = current_line_.at(index + 1);
   for (int j = 0; j < maze_->GetCols(); ++j) {
-    if (current_line_.at(j) == current_line_.at(index + 1)) {
+    //    if (current_line_.at(j) == current_line_.at(index + 1)) {
+    if (current_line_.at(j) == mutable_set) {
       current_line_.at(j) = element;
     }
   }
