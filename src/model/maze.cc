@@ -20,39 +20,58 @@ void Maze::StartParsingFile(const std::string &path_file) {
   }
 }
 
-void Maze::GenerationMaze(const unsigned short &rows,
-                          const unsigned short &cols) {
+void Maze::GenerationMaze(const data_type &rows, const data_type &cols) {
   this->CreateMaze(rows, cols);
   this->generator_.GenerationMaze(this);
 }
 
-Maze::Matrix &Maze::GetRightBorderMatrix() { return this->right_border_; }
+void Maze::SaveMazeInFile(const std::string &file_name) {}
 
-Maze::Matrix &Maze::GetBottomBorderMatrix() { return this->bottom_border_; }
+const Maze::Matrix &Maze::GetRightBorderMatrix() { return this->right_border_; }
 
-unsigned short &Maze::GetRows() { return this->rows_; }
+const Maze::Matrix &Maze::GetBottomBorderMatrix() {
+  return this->bottom_border_;
+}
 
-unsigned short &Maze::GetCols() { return this->cols_; }
+void Maze::SetBottomBorder(const data_type &i, const data_type &j) {
+  this->bottom_border_.at(i).at(j) = 1;
+}
 
-unsigned short Maze::CheckRightBorder(const unsigned short &i,
-                                      const unsigned short &j) {
+void Maze::SetRightBorder(const data_type &i, const data_type &j) {
+  this->right_border_.at(i).at(j) = 1;
+}
+
+const Maze::data_type &Maze::GetRows() { return this->rows_; }
+
+const Maze::data_type &Maze::GetCols() { return this->cols_; }
+
+const Maze::data_type &Maze::CheckRightBorder(const unsigned short &i,
+                                              const unsigned short &j) {
   if (i >= this->rows_ || j >= this->cols_) {
     throw std::invalid_argument("Incorrect index");
   }
   return this->right_border_.at(i).at(j);
 }
 
-unsigned short Maze::CheckBottomBorder(const unsigned short &i,
-                                       const unsigned short &j) {
-  if (i > this->rows_ || j > this->cols_) {
+const Maze::data_type &Maze::CheckBottomBorder(const data_type &i,
+                                               const data_type &j) {
+  if (i >= this->rows_ || j >= this->cols_) {
     throw std::invalid_argument("Incorrect index");
   }
   return this->bottom_border_.at(i).at(j);
 }
 
-void Maze::CreateMaze(const unsigned short &rows, const unsigned short &cols) {
-  this->right_border_ = Matrix(rows, std::vector<unsigned short>(cols));
-  this->bottom_border_ = Matrix(rows, std::vector<unsigned short>(cols));
+void Maze::DeleteBottomBorder(const data_type &i, const data_type &j) {
+  this->bottom_border_.at(i).at(j) = 0;
+}
+
+void Maze::DeleteRightBorder(const data_type &i, const data_type &j) {
+  this->right_border_.at(i).at(j) = 0;
+}
+
+void Maze::CreateMaze(const data_type &rows, const data_type &cols) {
+  this->right_border_ = Matrix(rows, std::vector<data_type>(cols));
+  this->bottom_border_ = Matrix(rows, std::vector<data_type>(cols));
   this->rows_ = rows;
   this->cols_ = cols;
 }

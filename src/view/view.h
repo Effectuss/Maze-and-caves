@@ -30,9 +30,10 @@ class View : public QWidget {
   ~View();
 
  private slots:
-  void ClickedActionUploadFile();
-  void ClickedActionClear();
-  void ClickedActionGenerate();
+  void ClickedOnActionUploadFile();
+  void ClickedOnActionClear();
+  void ClickedOnActionGenerate();
+  void ClickedOnActionSaveMaze();
 
  private:
   Ui::View *ui_;

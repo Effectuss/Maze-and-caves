@@ -9,16 +9,18 @@ View::View(Controller *controller, QWidget *parent)
   ui_->valueHeight->clear();
   ui_->valueWidth->clear();
   connect(ui_->actionUploadFile, SIGNAL(clicked()), this,
-          SLOT(ClickedActionUploadFile()));
+          SLOT(ClickedOnActionUploadFile()));
   connect(ui_->actionClear, SIGNAL(clicked()), this,
-          SLOT(ClickedActionClear()));
+          SLOT(ClickedOnActionClear()));
   connect(ui_->actionGenerate, SIGNAL(clicked()), this,
-          SLOT(ClickedActionGenerate()));
+          SLOT(ClickedOnActionGenerate()));
+  connect(ui_->actionSaveMaze, SIGNAL(clicked()), this,
+          SLOT(ClickedOnActionSaveMaze()));
 }
 
 View::~View() { delete ui_; }
 
-void View::ClickedActionUploadFile() {
+void View::ClickedOnActionUploadFile() {
   QString file_path = QFileDialog::getOpenFileName(
       this, "Open a file", QDir::homePath(), "txt (*.txt)");
   auto file_name = file_path.split(u'/');
@@ -38,16 +40,22 @@ void View::ClickedActionUploadFile() {
   }
 }
 
-void View::ClickedActionClear() {
+void View::ClickedOnActionClear() {
   ui_->paintWindow->ClearPaintWindow();
   ui_->lineFileName->clear();
   ui_->valueHeight->clear();
   ui_->valueWidth->clear();
 }
 
-void View::ClickedActionGenerate() {
+void View::ClickedOnActionGenerate() {
   controller_->GenerationMaze(ui_->valueHeight->value(),
                               ui_->valueWidth->value());
   ui_->lineFileName->clear();
   ui_->paintWindow->DrawMaze(this->controller_);
+}
+
+void View::ClickedOnActionSaveMaze() {
+  QString file_name = QFileDialog::getSaveFileName(
+      this, "Save maze", QDir::homePath(), "txt (*.txt)");
+  qDebug() << file_name;
 }

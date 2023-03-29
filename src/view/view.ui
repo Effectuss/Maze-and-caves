@@ -204,7 +204,7 @@
        <attribute name="title">
         <string>Maze</string>
        </attribute>
-       <widget class="QPushButton" name="actionSave">
+       <widget class="QPushButton" name="actionSaveMaze">
         <property name="geometry">
          <rect>
           <x>60</x>
@@ -217,7 +217,7 @@
          <string>Save</string>
         </property>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>60</x>

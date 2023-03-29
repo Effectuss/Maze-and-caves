@@ -6,31 +6,38 @@ void Controller::ParsingMazeFile(const std::string &path_file) {
   this->maze_->StartParsingFile(path_file);
 }
 
-Controller::Matrix &Controller::GetRightBorderMaze() {
+const Controller::Matrix &Controller::GetRightBorderMaze() {
   return this->maze_->GetRightBorderMatrix();
 }
 
-Controller::Matrix &Controller::GetBottomBorderMaze() {
+const Controller::Matrix &Controller::GetBottomBorderMaze() {
   return this->maze_->GetBottomBorderMatrix();
 }
 
-unsigned short &Controller::GetRowsMaze() { return this->maze_->GetRows(); }
+const Controller::data_type &Controller::GetRowsMaze() {
+  return this->maze_->GetRows();
+}
 
-unsigned short &Controller::GetColsMaze() { return this->maze_->GetCols(); }
+const Controller::data_type &Controller::GetColsMaze() {
+  return this->maze_->GetCols();
+}
 
-unsigned short Controller::CheckRightBorderMaze(const unsigned short &i,
-                                                const unsigned short &j) {
+const Controller::data_type &Controller::CheckRightBorderMaze(
+    const data_type &i, const data_type &j) {
   return this->maze_->CheckRightBorder(i, j);
 }
 
-unsigned short Controller::CheckBottomBorderMaze(const unsigned short &i,
-                                                 const unsigned short &j) {
+const Controller::data_type &Controller::CheckBottomBorderMaze(
+    const data_type &i, const data_type &j) {
   return this->maze_->CheckBottomBorder(i, j);
 }
 
-void Controller::GenerationMaze(const unsigned short &i,
-                                const unsigned short &j) {
+void Controller::GenerationMaze(const data_type &i, const data_type &j) {
   this->maze_->GenerationMaze(i, j);
+}
+
+void Controller::SaveMazeInFile(const std::string &file_name) {
+  this->maze_->SaveMazeInFile(file_name);
 }
 
 void Controller::ParsingCaveFile(const std::string &path_file) {
@@ -41,11 +48,14 @@ Controller::Matrix &Controller::GetDataCave() {
   return this->cave_->GetCaveData();
 }
 
-unsigned short &Controller::GetRowsCave() { return this->cave_->GetRows(); }
+const Controller::data_type &Controller::GetRowsCave() {
+  return this->cave_->GetRows();
+}
 
-unsigned short &Controller::GetColsCave() { return this->cave_->GetCols(); }
+const Controller::data_type &Controller::GetColsCave() {
+  return this->cave_->GetCols();
+}
 
-bool Controller::CheckCellCave(const unsigned short &i,
-                               const unsigned short &j) {
+bool Controller::CheckCellCave(const data_type &i, const data_type &j) {
   return this->cave_->CheckCell(i, j);
 }

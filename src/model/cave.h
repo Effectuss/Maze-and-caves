@@ -10,12 +10,12 @@ class Cave : public ParsingFile {
   void StartParsingFile(const std::string& path_file) override;
 
   Matrix& GetCaveData();
-  void CreateCave(const unsigned short& rows, const unsigned short& cols);
   unsigned short& GetRows();
   unsigned short& GetCols();
   bool CheckCell(const unsigned short& i, const unsigned short& j);
 
  private:
+  void CreateCave(const unsigned short& rows, const unsigned short& cols);
   unsigned short rows_, cols_;
   Matrix cave_data_;
 };

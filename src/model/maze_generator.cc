@@ -28,12 +28,12 @@ void MazeGenerator::AddRightWalls(const data_type& row) {
   for (int i = 0; i < maze_->GetCols() - 1; ++i) {
     bool choice = RandomBool();
     if ((choice == true) || (set_.at(i) == set_.at(i + 1))) {
-      maze_->GetRightBorderMatrix().at(row).at(i) = true;
+      maze_->SetRightBorder(row, i);
     } else {
       UnionSet(i, set_.at(i));
     }
   }
-  maze_->GetRightBorderMatrix().at(row).at(maze_->GetCols() - 1) = true;
+  maze_->SetRightBorder(row, maze_->GetCols() - 1);
 }
 
 void MazeGenerator::UnionSet(const data_type& index, const data_type& element) {
@@ -49,7 +49,7 @@ void MazeGenerator::AddBottomWalls(const data_type& row) {
   for (int i = 0; i < maze_->GetCols(); ++i) {
     bool choice = RandomBool();
     if (FindAmountUniqueSet(set_.at(i)) != 1 && choice == true) {
-      maze_->GetBottomBorderMatrix().at(row).at(i) = true;
+      maze_->SetBottomBorder(row, i);
     }
   }
 }
@@ -68,7 +68,7 @@ MazeGenerator::data_type MazeGenerator::FindAmountUniqueSet(
 void MazeGenerator::CheckedBottomWalls(const data_type& row) {
   for (int i = 0; i < maze_->GetCols(); ++i) {
     if (FindAmountBottomWalls(set_.at(i), row) == 0) {
-      maze_->GetBottomBorderMatrix().at(row).at(i) = false;
+      maze_->DeleteBottomBorder(row, i);
     }
   }
 }
@@ -98,14 +98,12 @@ void MazeGenerator::FinishMazeGeneration() {
   AddRightWalls(maze_->GetRows() - 1);
   for (int i = 0; i < maze_->GetCols() - 1; ++i) {
     if (set_.at(i) != set_.at(i + 1)) {
-      maze_->GetRightBorderMatrix().at(maze_->GetRows() - 1).at(i) = false;
+      maze_->DeleteRightBorder(maze_->GetRows() - 1, i);
       UnionSet(i, set_.at(i));
     }
-    maze_->GetBottomBorderMatrix().at(maze_->GetRows() - 1).at(i) = true;
+    maze_->SetBottomBorder(maze_->GetRows() - 1, i);
   }
-  maze_->GetBottomBorderMatrix()
-      .at(maze_->GetRows() - 1)
-      .at(maze_->GetCols() - 1) = true;
+  maze_->SetBottomBorder(maze_->GetRows() - 1, maze_->GetCols() - 1);
 }
 
 bool MazeGenerator::RandomBool() {

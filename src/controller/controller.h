@@ -10,6 +10,7 @@
 class Controller {
  public:
   using Matrix = std::vector<std::vector<unsigned short> >;
+  using data_type = unsigned short;
 
   Controller(Maze* maze, Cave* cave);
   Controller(const Controller&) = delete;
@@ -17,22 +18,24 @@ class Controller {
   Controller& operator=(const Controller&) = delete;
   Controller& operator=(Controller&&) = delete;
 
+  // maze methods
   void ParsingMazeFile(const std::string& path_file);
-  Matrix& GetRightBorderMaze();
-  Matrix& GetBottomBorderMaze();
-  unsigned short& GetRowsMaze();
-  unsigned short& GetColsMaze();
-  unsigned short CheckRightBorderMaze(const unsigned short& i,
-                                      const unsigned short& j);
-  unsigned short CheckBottomBorderMaze(const unsigned short& i,
-                                       const unsigned short& j);
-  void GenerationMaze(const unsigned short& i, const unsigned short& j);
+  const Matrix& GetRightBorderMaze();
+  const Matrix& GetBottomBorderMaze();
+  const data_type& GetRowsMaze();
+  const data_type& GetColsMaze();
+  const data_type& CheckRightBorderMaze(const data_type& i, const data_type& j);
+  const data_type& CheckBottomBorderMaze(const data_type& i,
+                                         const data_type& j);
+  void GenerationMaze(const data_type& i, const data_type& j);
+  void SaveMazeInFile(const std::string& file_name);
 
+  // cave methods
   void ParsingCaveFile(const std::string& path_file);
   Matrix& GetDataCave();
-  unsigned short& GetRowsCave();
-  unsigned short& GetColsCave();
-  bool CheckCellCave(const unsigned short& i, const unsigned short& j);
+  const data_type& GetRowsCave();
+  const data_type& GetColsCave();
+  bool CheckCellCave(const data_type& i, const data_type& j);
 
  private:
   Maze* maze_;
