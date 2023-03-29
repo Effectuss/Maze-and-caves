@@ -25,7 +25,6 @@ void PaintWindow::DrawMaze(Controller *controller) {
       int y_0 = height * i;
       int x_1 = width * (j + 1);
       int y_1 = height * (i + 1);
-
       if (controller->CheckRightBorderMaze(i, j))
         painter.drawLine(x_1, y_0, x_1, y_1);
 

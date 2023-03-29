@@ -10,27 +10,25 @@ class Maze;
 class MazeGenerator {
  public:
   using data_type = unsigned short;
-  static constexpr int kEmpty = 0;
   void GenerationMaze(Maze* const maze);
+  void SetMaze(Maze* const maze);
 
  private:
-  void CreateCurrentLine(const data_type& cols);
-  void AssignUniqueValues();
-  void AddingVerticalWalls(const data_type& row);
-  void AddingHorizontalWalls(const data_type& row);
-  data_type CalculateUniqueSet(const int& element);
-  void CheckedHorizontalWalls(const data_type& row);
-  data_type CalculateHorizontalWalls(const data_type& element,
-                                     const data_type& row);
-  void PreparingNewLine(const data_type& row);
-  void MergeSet(const data_type& index, const data_type& element);
-  void AddingEndLine();
-  void CheckedEndLine();
+  void SetUniqueValues();
+  void AddRightWalls(const data_type& row);
+  void AddBottomWalls(const data_type& row);
+  void CheckedBottomWalls(const data_type& row);
+  void PrepareNewLine(const data_type& row);
+  void UnionSet(const data_type& index, const data_type& element);
+  void FinishMazeGeneration();
   bool RandomBool();
-  void ClearGenerator();
 
-  std::vector<unsigned int> current_line_;
-  int counter_{1};
+  data_type FindAmountUniqueSet(const int& element);
+  data_type FindAmountBottomWalls(const data_type& element,
+                                  const data_type& row);
+
+  std::vector<data_type> set_;
+  int counter_{0};
   Maze* maze_;
 };
 
