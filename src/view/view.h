@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTimer>
 #include <QWidget>
 #include <string>
 #include <vector>
@@ -33,11 +34,17 @@ class View : public QWidget {
   void ClickedOnActionUploadFile();
   void ClickedOnActionClear();
   void ClickedOnActionGenerate();
-  void ClickedOnActionSaveMaze();
+  void ClickedOnActionSave();
+  void ClickedOnActionGenerateCave();
+  void ClickedOnActionNextFrame();
+  void ClickedOnActionAutomate();
+
+  void ClickedOnActionSolveMaze();
 
  private:
   Ui::View *ui_;
   Controller *controller_;
+  QTimer *timer_;
 };
 
 #endif  // MAZE_AND_CAVES_VIEW_H_

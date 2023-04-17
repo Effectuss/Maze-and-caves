@@ -1,6 +1,7 @@
 #ifndef MAZE_AND_CAVES_MAZE_GENERATOR_H_
 #define MAZE_AND_CAVES_MAZE_GENERATOR_H_
 
+#include <functional>
 #include <map>
 #include <random>
 #include <vector>
@@ -10,7 +11,8 @@ class Maze;
 class MazeGenerator {
  public:
   using data_type = unsigned short;
-  void GenerationMaze(Maze* const maze);
+
+  void GenerationMaze();
   void SetMaze(Maze* const maze);
 
  private:

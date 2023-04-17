@@ -53,7 +53,7 @@ void ParsingFile::FillMatrix(std::ifstream& file, Matrix& vec) {
   unsigned index_i = 0;
   while (std::getline(file, line) && index_i < vec.size()) {
     std::stringstream stream(line);
-    for (int j = 0; j < vec.at(index_i).size(); ++j) {
+    for (long unsigned int j = 0; j < vec.at(index_i).size(); ++j) {
       unsigned tmp;
       stream >> tmp;
       vec.at(index_i).at(j) = tmp;

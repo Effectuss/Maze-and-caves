@@ -21,8 +21,8 @@ set(PROJECT_SOURCES
         view/view.ui
         controller/controller.cc
         controller/controller.h
-        model/cave_simulation.cc
-        model/cave_simulation.h
+        model/cave_automaton.h
+        model/cave_automaton.cc
         model/maze_generator.cc
         model/maze_generator.h
         model/maze_solve.cc

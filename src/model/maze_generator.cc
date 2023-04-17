@@ -2,9 +2,8 @@
 
 #include "maze.h"
 
-void MazeGenerator::GenerationMaze(Maze* const maze) {
-  SetMaze(maze);
-  set_ = std::move(std::vector<data_type>(maze->GetCols()));
+void MazeGenerator::GenerationMaze() {
+  set_ = std::move(std::vector<data_type>(maze_->GetCols()));
   for (int j = 0; j < maze_->GetRows() - 1; ++j) {
     SetUniqueValues();
     AddRightWalls(j);
@@ -27,7 +26,7 @@ void MazeGenerator::SetUniqueValues() {
 void MazeGenerator::AddRightWalls(const data_type& row) {
   for (int i = 0; i < maze_->GetCols() - 1; ++i) {
     bool choice = RandomBool();
-    if ((choice == true) || (set_.at(i) == set_.at(i + 1))) {
+    if (choice || (set_.at(i) == set_.at(i + 1))) {
       maze_->SetRightBorder(row, i);
     } else {
       UnionSet(i, set_.at(i));
@@ -48,7 +47,7 @@ void MazeGenerator::UnionSet(const data_type& index, const data_type& element) {
 void MazeGenerator::AddBottomWalls(const data_type& row) {
   for (int i = 0; i < maze_->GetCols(); ++i) {
     bool choice = RandomBool();
-    if (FindAmountUniqueSet(set_.at(i)) != 1 && choice == true) {
+    if (FindAmountUniqueSet(set_.at(i)) != 1 && choice) {
       maze_->SetBottomBorder(row, i);
     }
   }
